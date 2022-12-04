@@ -71,9 +71,10 @@ public class Day3 {
         int sum = 0;
         for (int i = 0; i < found.size(); ++i) {
             for (Character c : found.get(i)) {
-                sum += c - 38;
                 if (Character.isLowerCase(c)) {
-                    sum -= 58;
+                    sum += c - 96;  // ASCII offset 97 -> 1 
+                } else {
+                    sum += c - 38;  // ASCII offset 65 -> 27
                 }
             }
         }

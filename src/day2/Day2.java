@@ -38,8 +38,8 @@ public class Day2 {
 
         int score = 0;
         for (String s : data) {
-            int opp = s.charAt(0) - 65; // ASCII A == 65  A B C -> 0 1 2
-            int me = s.charAt(2) - 88;  // ASCII X == 88  X Y Z -> 0 1 2
+            int opp = s.charAt(0) - 65; // ASCII Offset 65 -> 0
+            int me = s.charAt(2) - 88;  // ASCII Offset 88 -> 0
             int result = resultMatrix[opp][me];
             score += result;
         }
