@@ -74,10 +74,10 @@ public class Day4 {
 
         int[] intervalEnds = new int[4];
 
-        intervalEnds[0] = Integer.valueOf(left[0]);
-        intervalEnds[1] = Integer.valueOf(left[1]);
-        intervalEnds[2] = Integer.valueOf(right[0]);
-        intervalEnds[3] = Integer.valueOf(right[1]);
+        intervalEnds[0] = Integer.parseInt(left[0]);
+        intervalEnds[1] = Integer.parseInt(left[1]);
+        intervalEnds[2] = Integer.parseInt(right[0]);
+        intervalEnds[3] = Integer.parseInt(right[1]);
 
         return intervalEnds;
     }
