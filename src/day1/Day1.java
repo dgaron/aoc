@@ -17,7 +17,7 @@ public class Day1 {
 
         List<Integer> sums = calculateTotals(fileContents);
 
-        Collections.sort(sums);
+        Collections.sort(sums);     // Sanjay weeps
         Collections.reverse(sums);
 
         int part1 = sums.get(0);
