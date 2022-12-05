@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
     }
     cout << '\n';
 
-    // RESET THEstacks DUHHHHH
+    // RESET THE stacks DUHHHHH
     stacks = dealWithThisNonsense(data);
 
     for (const string &s : moves) {
