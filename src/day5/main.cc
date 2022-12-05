@@ -68,10 +68,11 @@ void moveStacks(const string &s, vector<stack<char> > &stacks) {
         stacks[source].pop();
         movingCrates.push(crate);                                                            
     } 
-    for (int i = 0; i < numCrates; ++i) {
+
+    while (!movingCrates.empty()) {
         stacks[target].push(movingCrates.top());
         movingCrates.pop();
-    }
+    } 
 }
 
 int main(int argc, char *argv[]) {
@@ -109,7 +110,8 @@ int main(int argc, char *argv[]) {
     }
     cout << '\n';
 
-    // RESET THE stacks DUHHHHH
+    // RESET THE STACKS DUHHHHH
+
     stacks = dealWithThisNonsense(data);
 
     for (const string &s : moves) {
