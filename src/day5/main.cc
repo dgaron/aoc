@@ -111,6 +111,7 @@ int main(int argc, char *argv[]) {
     cout << '\n';
 
     // RESET THE STACKS DUHHHHH
+
     stacks = dealWithThisNonsense(data);
 
     for (const string &s : moves) {
