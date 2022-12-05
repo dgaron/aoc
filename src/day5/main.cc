@@ -8,7 +8,7 @@
 
 using namespace std; // 😎
 
-size_t whichCrate(const size_t &found) {
+size_t whichStack(const size_t &found) {
     return (found / 4) + 1;
 }
 
@@ -20,8 +20,8 @@ vector<stack<char> > dealWithThisNonsense(const vector<string> &data) {
         const string &s = data[i];
         auto found = s.find('[');
         while (found != string::npos) {
-            auto crate = whichCrate(found);
-            crates[crate].push(s[found+1]);
+            auto stack = whichStack(found);
+            crates[stack].push(s[found+1]);
             found = s.find('[', found+1);
         }
     }
