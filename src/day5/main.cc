@@ -4,7 +4,7 @@
 #include <sstream>
 #include <stack>
 
-#include "readFile.h"
+#include "boboUtils.h"
 
 using namespace std; // 😎
 
@@ -37,9 +37,9 @@ vector<int> parseMove(const string &s) {
     }
     // Token 1 is num, 3 is source, 5 is target
     vector<int> coords;
-    coords.push_back(stoi(tokens[1]));
-    coords.push_back(stoi(tokens[3]));
-    coords.push_back(stoi(tokens[5]));
+    coords.push_back(parseLong(tokens[1]));
+    coords.push_back(parseLong(tokens[3]));
+    coords.push_back(parseLong(tokens[5]));
     return coords;
 }
 
