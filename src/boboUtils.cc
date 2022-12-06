@@ -1,4 +1,5 @@
 #include <fstream>
+#include <cstdlib>
 #include <cerrno>
 
 #include "boboUtils.h"
