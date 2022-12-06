@@ -32,9 +32,6 @@ public class Day6 {
 
     private static int findMarker(String s, int length) {
         Set<Character> lastFour = new HashSet<>();
-        for (int i = 0; i < 3; ++i) {
-            lastFour.add(s.charAt(i));
-        }
         int start = 0;
         int end = 3;
         while (lastFour.size() != length) {
