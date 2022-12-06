@@ -33,7 +33,7 @@ public class Day6 {
     private static int findMarker(String s, int length) {
         Set<Character> lastFour = new HashSet<>();
         int start = 0;
-        int end = 3;
+        int end = 0;
         while (lastFour.size() != length) {
             if (lastFour.add(s.charAt(end))) {
                 ++end;
