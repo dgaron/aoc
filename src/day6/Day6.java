@@ -34,13 +34,16 @@ public class Day6 {
         Set<Character> lastFour = new HashSet<>();
         int start = 0;
         int end = 0;
-        while (lastFour.size() != length) {
+        while (lastFour.size() != length && end < s.length()) {
             if (lastFour.add(s.charAt(end))) {
                 ++end;
             } else {
                 lastFour.remove(s.charAt(start));
                 ++start;
             }
+        }
+        if (lastFour.size() != length) {
+            return -1; // Ain't no substrings with 'length' consecutive unique characters
         }
         return end;
     }
