@@ -14,27 +14,30 @@ public class Day6 {
         }
         List<String> fileContents = FileUtil.readFile(args[0]);
 
-        int part1 = calculatePart1(fileContents);
+        int part1 = countCharactersProcessed(fileContents, 4);
         System.out.printf("Characters processed: %d%n", part1);
+
+        int part2 = countCharactersProcessed(fileContents, 14);
+        System.out.printf("Characters processed: %d%n", part2);
 
     }
 
-    private static int calculatePart1(List<String> data) {
+    private static int countCharactersProcessed(List<String> data, int length) {
         int charactersProcessed = 0;
         for (String s : data) {
-            charactersProcessed += findMarker(s);
+            charactersProcessed += findMarker(s, length);
         }
         return charactersProcessed;
     }
 
-    private static int findMarker(String s) {
+    private static int findMarker(String s, int length) {
         Set<Character> lastFour = new HashSet<>();
         for (int i = 0; i < 3; ++i) {
             lastFour.add(s.charAt(i));
         }
         int start = 0;
         int end = 3;
-        while (lastFour.size() != 4) {
+        while (lastFour.size() != length) {
             if (lastFour.add(s.charAt(end))) {
                 ++end;
             } else {
