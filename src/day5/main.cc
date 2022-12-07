@@ -70,7 +70,7 @@ void moveStacks(const string &s, vector<stack<char> > &stacks) {
 }
 
 ostream &operator <<(ostream &os, const vector<stack<char> > &stacks) {
-    for (int i = 1; i < 10; ++i) {
+    for (size_t i = 1; i < stacks.size(); ++i) {
         os << stacks[i].top();
     }
     return os;
