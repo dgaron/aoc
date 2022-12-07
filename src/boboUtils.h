@@ -8,4 +8,6 @@ std::vector<std::string> readFile(const std::string &fileName);
 
 long parseLong(const std::string &s);
 
+std::vector<std::string> tokenize(const std::string &s);
+
 #endif // BOBO_UTILS_H

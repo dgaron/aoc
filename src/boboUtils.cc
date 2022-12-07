@@ -1,6 +1,7 @@
 #include <fstream>
-#include <cstdlib>
-#include <cerrno>
+#include <sstream>  // istringstream
+#include <cstdlib>  // strtol
+#include <cerrno>   // errno 
 
 #include "boboUtils.h"
 
@@ -24,4 +25,14 @@ long parseLong(const string &s) {
         throw "Bad Conversion"s;
     } 
     return val;
+}
+
+vector<string> tokenize(const string &s) {
+    vector<string> tokens;
+    string token;
+    istringstream iss(s);
+    while (getline(iss, token, ' ')) {
+        tokens.push_back(token);
+    }
+    return tokens;
 }
