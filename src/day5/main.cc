@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <sstream>
 #include <stack>
 
 #include "boboUtils.h"
@@ -29,12 +28,7 @@ vector<stack<char> > dealWithThisNonsense(const vector<string> &data) {
 }
 
 vector<int> parseMove(const string &s) {
-    vector<string> tokens;
-    string token;
-    istringstream iss(s);
-    while (getline(iss, token, ' ')) {
-        tokens.push_back(token);
-    }
+    vector<string> tokens = tokenize(s);
     // Token 1 is num, 3 is source, 5 is target
     vector<int> coords;
     coords.push_back(parseLong(tokens[1]));
@@ -75,6 +69,13 @@ void moveStacks(const string &s, vector<stack<char> > &stacks) {
     } 
 }
 
+ostream &printStacks(ostream &os, const vector<stack<char> > stacks) {
+    for (int i = 1; i < 10; ++i) {
+        os << stacks[i].top();
+    }
+    return os;
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         cout << "Usage: " << argv[0] << " [filename]" << '\n';
@@ -105,9 +106,7 @@ int main(int argc, char *argv[]) {
     }
 
     cout << "PART 1 - Top Row: ";
-    for (int i = 1; i < 10; ++i) {
-        cout << stacks[i].top();
-    }
+    printStacks(cout, stacks);
     cout << '\n';
 
     // RESET THE STACKS DUHHHHH
