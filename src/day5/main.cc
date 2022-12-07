@@ -69,7 +69,7 @@ void moveStacks(const string &s, vector<stack<char> > &stacks) {
     } 
 }
 
-ostream &printStacks(ostream &os, const vector<stack<char> > stacks) {
+ostream &operator <<(ostream &os, vector<stack<char> > stacks) {
     for (int i = 1; i < 10; ++i) {
         os << stacks[i].top();
     }
@@ -105,9 +105,7 @@ int main(int argc, char *argv[]) {
         moveCrates(s, stacks);
     }
 
-    cout << "PART 1 - Top Row: ";
-    printStacks(cout, stacks);
-    cout << '\n';
+    cout << "PART 1 - Top Row: " << stacks << '\n';
 
     // RESET THE STACKS DUHHHHH
 
@@ -117,11 +115,7 @@ int main(int argc, char *argv[]) {
         moveStacks(s, stacks);
     }    
 
-    cout << "PART 2 - Top Row: ";
-    for (int i = 1; i < 10; ++i) {                                                                  
-        cout << stacks[i].top();                                                                   
-    }                                                                                               
-    cout << '\n';
+    cout << "PART 2 - Top Row: " << stacks << '\n';
 
 
     return 0;
