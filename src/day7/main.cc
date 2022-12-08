@@ -9,9 +9,9 @@
 
 using namespace std; // lol
 
-long sumDirectoriesUnder100k(const list<Directory *> &directories) {
+long sumDirectoriesUnder100k(const list<Directory *> &fileTree) {
     long sum = 0;
-    for (Directory *d : directories) {
+    for (Directory *d : fileTree) {
         long dirSize = d->getSize();
         if (dirSize <= 100000) {
             sum += dirSize;
@@ -20,9 +20,8 @@ long sumDirectoriesUnder100k(const list<Directory *> &directories) {
     return sum;
 }
 
-list<Directory *> buildFileTree(const vector<string> &data, Directory *root) {
-    list<Directory *> fileTree;
-    Directory *currentDir = root;
+void buildFileTree(list<Directory *> &fileTree, const vector<string> &data) {
+    Directory *currentDir = fileTree.front();
     for (size_t i = 1; i < data.size(); ++i) {
         vector<string> tokens = tokenize(data[i]);
 
@@ -47,13 +46,14 @@ list<Directory *> buildFileTree(const vector<string> &data, Directory *root) {
         }
 
     }
-    return fileTree;
 }
 
 long part1(const vector<string> &data) {
     Directory root(nullptr, "\\");
-    list<Directory *> directories = buildFileTree(data, &root);
-    long sum = sumDirectoriesUnder100k(directories);
+    list<Directory *> fileTree;
+    fileTree.push_back(&root);
+    buildFileTree(fileTree, data);
+    long sum = sumDirectoriesUnder100k(fileTree);
     return sum;
 }
 
