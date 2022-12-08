@@ -1,11 +1,62 @@
 #include <iostream>
 #include <vector>
+#include <list>
 #include <string>
-#include <cctype>
+#include <cctype> // isdigit
 
 #include "boboUtils.h"
+#include "Directory.h"
 
 using namespace std; // lol
+
+long sumDirectoriesUnder100k(const list<Directory *> &directories) {
+    long sum = 0;
+    for (Directory *d : directories) {
+        long dirSize = d->getSize();
+        if (dirSize <= 100000) {
+            sum += dirSize;
+        }
+    }
+    return sum;
+}
+
+list<Directory *> buildFileTree(const vector<string> &data, Directory *root) {
+    list<Directory *> fileTree;
+    Directory *currentDir = root;
+    for (size_t i = 1; i < data.size(); ++i) {
+        vector<string> tokens = tokenize(data[i]);
+
+        // Ignore ls
+        if (data[i].substr(0,4) == "$ ls") {
+            continue;
+        }
+
+        // Add stuff up
+        if (tokens[0] == "dir") {
+            currentDir->addChild(tokens[1]);
+            fileTree.push_back(currentDir->findChild(tokens[1]));
+        } else if (tokens[0] != "$" && isdigit(tokens[0][0])) {
+            currentDir->updateSize(parseLong(tokens[0]));
+        }
+
+        // Move around
+        if (data[i].substr(0,4) == "$ cd" && tokens[2] == "..") {
+            currentDir = currentDir->getParent();
+        } else if (data[i].substr(0,4) == "$ cd") {
+            currentDir = currentDir->findChild(tokens[2]);
+        }
+
+    }
+    return fileTree;
+}
+
+long part1(const vector<string> &data) {
+    Directory root(nullptr, "\\");
+    list<Directory *> directories = buildFileTree(data, &root);
+    long sum = sumDirectoriesUnder100k(directories);
+    return sum;
+}
+
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
@@ -15,5 +66,8 @@ int main(int argc, char *argv[]) {
 
     vector<string> data = readFile(argv[1]);
 
-    
+    long sum = part1(data);
+
+    cout << "Sum of directories under 100k: " << sum << '\n';
+
 }
