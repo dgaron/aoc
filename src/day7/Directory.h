@@ -18,7 +18,7 @@ class Directory {
 
     void freeTheChildren();
     
-    void updateParentSize();
+    void updateParentSize(long);
 
   public:
 

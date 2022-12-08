@@ -9,13 +9,16 @@ Directory::Directory(Directory *parent, const string name) : parent(parent), nam
 }
 
 Directory::~Directory() {
-    freeTheChildren();
+    //freeTheChildren();
 }
 
 void Directory::freeTheChildren() {
+    if (children.empty()) {
+        return;
+    }
     for (Directory *child : children) {
         child->freeTheChildren();
-        delete(child);
+        // delete(child);
     }
 }
 
@@ -34,12 +37,12 @@ long Directory::getSize() const {
 
 void Directory::updateSize(long fileSize) {
     size += fileSize;
-    updateParentSize();
+    updateParentSize(fileSize);
 }
 
-void Directory::updateParentSize() {
+void Directory::updateParentSize(long fileSize) {
     if (parent != nullptr) {
-        parent->updateSize(size);
+        parent->updateSize(fileSize);
     }
 }
 
