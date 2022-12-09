@@ -9,4 +9,3 @@ Tried to be a cool kid on day 2 and do the mod thing, but gave up and went with 
 Lay eyes upon day 5 and weep at my suffering.
 
 ~Day 7 has a memory leak. Probably use shared_ptr / weak_ptr and save myself the trouble rooting it out.~  
-Why are you putting them on the heap? **Put 'em on the stack**
