@@ -8,22 +8,8 @@ Directory::Directory(Directory *parent, const string name) : parent(parent), nam
     size = 0;
 }
 
-Directory::~Directory() {
-    //freeTheChildren();
-}
-
-void Directory::freeTheChildren() {
-    if (children.empty()) {
-        return;
-    }
-    for (Directory *child : children) {
-        child->freeTheChildren();
-        // delete(child);
-    }
-}
-
 void Directory::addChild(const string name) {
-    Directory *newChild = new Directory(this, name);
+    Directory newChild(this, name);
     children.push_back(newChild);
 }
 
@@ -46,9 +32,9 @@ void Directory::updateParentSize(long fileSize) {
     }
 }
 
-Directory *Directory::findChild(const std::string &name) const {
-    for (Directory *child : children) {
-        if (child->getName() == name) {
+Directory &Directory::getChild(const std::string &name) {
+    for (Directory &child : children) {
+        if (child.getName() == name) {
             return child;
         }
     }

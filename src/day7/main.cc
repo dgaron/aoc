@@ -33,7 +33,8 @@ void buildFileTree(list<Directory *> &dirList, const vector<string> &data) {
         // Add stuff up
         if (tokens[0] == "dir") {
             currentDir->addChild(tokens[1]);
-            dirList.push_back(currentDir->findChild(tokens[1]));
+            Directory *newChild = &(currentDir->getChild(tokens[1]));
+            dirList.push_back(newChild);
         } else if (tokens[0] != "$" && isdigit(tokens[0][0])) {
             currentDir->updateSize(parseLong(tokens[0]));
         }
@@ -42,7 +43,7 @@ void buildFileTree(list<Directory *> &dirList, const vector<string> &data) {
         if (data[i].substr(0,4) == "$ cd" && tokens[2] == "..") {
             currentDir = currentDir->getParent();
         } else if (data[i].substr(0,4) == "$ cd") {
-            currentDir = currentDir->findChild(tokens[2]);
+            currentDir = &(currentDir->getChild(tokens[2]));
         }
     }
 }
@@ -72,21 +73,7 @@ long findDirSize(list<Directory *> &dirList, int driveSize, int spaceNeeded) {
     return -1;
 }
 
-long part1(const vector<string> &data) {
-    Directory root(nullptr, "\\");
-    list<Directory *> dirList;
-    dirList.push_back(&root);
-    buildFileTree(dirList, data);
-    long sum = sumDirectoriesUnder100k(dirList);
-    return sum;
-}
-
-long part2(const vector<string> &data) {
-    Directory root(nullptr, "\\");
-    list<Directory *> dirList;
-    dirList.push_back(&root);
-    buildFileTree(dirList, data);
-
+long part2(list<Directory *> &dirList) {
     const int TOTAL_SIZE = 70'000'000;
     const int SPACE_NEEDED = 30'000'000;
 
@@ -103,12 +90,15 @@ int main(int argc, char *argv[]) {
 
     vector<string> data = readFile(argv[1]);
 
-    // This solution has a memory leak
+    Directory root(nullptr, "\\");
+    list<Directory *> dirList;
+    dirList.push_back(&root);
+    buildFileTree(dirList, data);
 
-    long sum = part1(data);
-    cout << "Sum of directories under 100k: " << sum << '\n';
+    long part1Sum = sumDirectoriesUnder100k(dirList);
+    cout << "Sum of directories under 100k: " << part1Sum << '\n';
 
-    long dirSize = part2(data);
+    long dirSize = part2(dirList);
     cout << "Directory size to be deleted: " << dirSize << '\n';
 
 }

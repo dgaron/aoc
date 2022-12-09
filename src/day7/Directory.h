@@ -12,11 +12,9 @@ class Directory {
 
     const std::string name;
 
-    std::list<Directory *> children;
+    std::list<Directory> children;
 
     long size;
-
-    void freeTheChildren();
     
     void updateParentSize(long);
 
@@ -26,7 +24,7 @@ class Directory {
 
     Directory(Directory *, const std::string);
 
-    ~Directory();
+    ~Directory() = default;
 
     void addChild(const std::string);
 
@@ -38,7 +36,7 @@ class Directory {
 
     Directory *getParent() const;
 
-    Directory *findChild(const std::string &) const;
+    Directory &getChild(const std::string &);
 };
 
 #endif // DIRECTORY_H
