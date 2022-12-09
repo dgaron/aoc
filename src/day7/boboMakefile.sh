@@ -1,5 +1,7 @@
 #!/bin/bash
 
-g++ -o main -I.. main.cc ../boboUtils.cc Directory.cc -Wall -Wextra -Wpedantic -std=c++17
-
-echo "I compiled your program, $USER"
+if g++ -o main -I.. main.cc ../boboUtils.cc Directory.cc -Wall -Wextra -Wpedantic -std=c++17; then
+    echo "I compiled your program, $USER"
+else
+    echo "Get your shit together"
+fi

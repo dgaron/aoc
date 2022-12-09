@@ -10,4 +10,6 @@ long parseLong(const std::string &s);
 
 std::vector<std::string> tokenize(const std::string &s);
 
+std::vector<std::vector<int> > readFileInts(const std::string &fileName);
+
 #endif // BOBO_UTILS_H
