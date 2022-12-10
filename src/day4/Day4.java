@@ -8,7 +8,7 @@ public class Day4 {
     public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("Usage: java Day[n] [fileName]");
-            System.exit(0);
+            System.exit(1);
         }
         List<String> fileContents = FileUtil.readFile(args[0]);
 
