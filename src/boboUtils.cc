@@ -2,6 +2,7 @@
 #include <sstream>  // istringstream
 #include <cstdlib>  // strtol
 #include <cerrno>   // errno 
+#include <iostream>
 
 #include "boboUtils.h"
 
@@ -9,6 +10,11 @@ using namespace std; // Deal with it
 
 vector<string> readFile(const string &fileName) {
     ifstream in(fileName);
+    if (!in) {
+        cerr << "I'd buy that for a dollar!" << '\n';
+        exit(1);
+    }
+
     string s;
     vector<string> data;
     while (getline(in, s)) {
@@ -41,6 +47,11 @@ vector<string> tokenize(const string &s, const char delim) {
 // Originally for Day 8
 vector<vector<int> > readFileInts(const string &fileName) {
     ifstream in(fileName);
+    if (!in) {
+        cerr << "I'd buy that for a dollar!" << '\n';
+        exit(1);
+    }
+
     vector<vector<int> > data;
     string s;
     int row = 0;
