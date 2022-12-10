@@ -23,16 +23,16 @@ long parseLong(const string &s) {
     char *endptr = nullptr;
     long val = strtol(nptr, &endptr, 10);
     if (nptr == endptr || (errno == 0 && *endptr != 0)) {
-        throw "Bad Conversion"s;
+        throw "a tantrum";
     } 
     return val;
 }
 
-vector<string> tokenize(const string &s) {
+vector<string> tokenize(const string &s, const char delim) {
     vector<string> tokens;
     string token;
     istringstream iss(s);
-    while (getline(iss, token, ' ')) {
+    while (getline(iss, token, delim)) {
         tokens.push_back(token);
     }
     return tokens;
@@ -41,17 +41,16 @@ vector<string> tokenize(const string &s) {
 // Originally for Day 8
 vector<vector<int> > readFileInts(const string &fileName) {
     ifstream in(fileName);
-    char c;
-    vector<vector<int> > data { vector<int>() };
+    vector<vector<int> > data;
+    string s;
     int row = 0;
-    while (in.get(c)) {
-        if (c != '\n') {
+    while (getline(in, s)) {
+        data.push_back(vector<int>());
+        for (auto c : s) {
             int n = c - 48; // ASCII Magic
             data[row].push_back(n);
-        } else {
-            data.push_back(vector<int>());
-            ++row;
         }
+        ++row;
     }
     in.close();
     return data;
