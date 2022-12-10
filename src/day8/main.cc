@@ -124,7 +124,9 @@ int calculateScenicScores(const vector<vector<int> > &trees, vector<vector<int> 
     for (int i = 1; i < rows - 1; ++i) {
         for (int j = 1; j < col - 1; ++j) {
             scores[i][j] = getScore(trees, i, j);
-            maxScore = scores[i][j] > maxScore ? scores[i][j] : maxScore;
+            if (scores[i][j] > maxScore) {
+                maxScore = scores[i][j];
+            }
         }
     }
 
