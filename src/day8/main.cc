@@ -1,23 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <algorithm> // fill, max
 
 #include "boboUtils.h"
 
 using namespace std; // I do what I want
-
-
-void setBorders(vector<vector<int> > &vis, int val) {
-    int rows = vis.size();
-    int col = vis[0].size();
-
-    fill(vis[0].begin(), vis[0].end(), val);
-    fill(vis[rows-1].begin(), vis[rows-1].end(), val);
-    for (int i = 0; i < rows; ++i) {
-        vis[i][0] = val;
-        vis[i][col-1] = val;
-    }
-}
 
 int countVis(vector<vector<int> > &vis) {
     int sum = 0;
@@ -83,8 +69,6 @@ int part1(const vector<vector<int> > &trees) {
 
     vector<vector<int> > vis(rows, vector<int>(col, 0)); 
 
-    setBorders(vis, 1);
-
     checkVisibility(trees, vis);
 
     return countVis(vis);
@@ -140,7 +124,7 @@ int calculateScenicScores(const vector<vector<int> > &trees, vector<vector<int> 
     for (int i = 1; i < rows - 1; ++i) {
         for (int j = 1; j < col - 1; ++j) {
             scores[i][j] = getScore(trees, i, j);
-            maxScore = max(maxScore, scores[i][j]);
+            maxScore = scores[i][j] > maxScore ? scores[i][j] : maxScore;
         }
     }
 
@@ -152,8 +136,6 @@ int part2(const vector<vector<int> > &trees) {
     int col = trees[0].size();
 
     vector<vector<int> > scores(rows, vector<int>(col, 0)); 
-
-    setBorders(scores, 0);
 
     int maxScore = calculateScenicScores(trees, scores);
 
