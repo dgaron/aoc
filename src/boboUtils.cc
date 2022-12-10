@@ -14,6 +14,7 @@ vector<string> readFile(const string &fileName) {
     while (getline(in, s)) {
         data.push_back(s);
     }
+    in.close();
     return data;
 }
 
@@ -35,4 +36,23 @@ vector<string> tokenize(const string &s) {
         tokens.push_back(token);
     }
     return tokens;
+}
+
+// Originally for Day 8
+vector<vector<int> > readFileInts(const string &fileName) {
+    ifstream in(fileName);
+    char c;
+    vector<vector<int> > data { vector<int>() };
+    int row = 0;
+    while (in.get(c)) {
+        if (c != '\n') {
+            int n = c - 48; // ASCII Magic
+            data[row].push_back(n);
+        } else {
+            data.push_back(vector<int>());
+            ++row;
+        }
+    }
+    in.close();
+    return data;
 }
