@@ -46,10 +46,15 @@ public class Coordinate {
     // For the HashSet to work
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + x;
-        result = prime * result + y;
+        final int PRIME = 59;
+        int result = 43;
+        result = PRIME * result + Integer.valueOf(x).hashCode();
+        result = PRIME * result + Integer.valueOf(y).hashCode();
+    
+        long temp = Double.doubleToLongBits(x);
+        result = PRIME * result + ((int) (temp ^ (temp >> 32)));
+        result = PRIME * result + (Integer.valueOf(y).hashCode());
+
         return result;
     }
 
