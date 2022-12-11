@@ -51,9 +51,6 @@ public class Rope {
         for (int i = 0; i < numSteps; ++i) {
             head.set(index, step);
             moveTail();
-            // System.out.println(move);
-            // System.out.printf("HEAD: %d, %d%n", head.get(0),head.get(1));
-            // System.out.printf("Tail: %d, %d%n", tail.get(0),tail.get(1));
         }
     }
 
