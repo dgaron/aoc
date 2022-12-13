@@ -3,19 +3,30 @@ package src.day9;
 import java.util.StringTokenizer;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Rope {
 
-    private Coordinate head;
-    private Coordinate tail;
+    private List<Knot> knots;
+    private Knot head;
+    private Knot tail;
     
-    private Set<Coordinate> tailVisited;
+    private Set<Knot> tailVisited;
 
-    public Rope() {
-        head = new Coordinate(0,0);
-        tail = new Coordinate(0,0);
+    public Rope(int length) {
+        knots = new ArrayList<>(length);
+        for (int i = 0; i < length; ++i) {
+            knots.add(new Knot(0,0));
+        }
+        head = knots.get(0);
+        tail = knots.get(length-1);
         tailVisited = new HashSet<>();
         updateTailHistory();
+    }
+
+    public Rope() {
+        this(2);
     }
 
     public int squaresTailVisited() {
@@ -50,18 +61,20 @@ public class Rope {
         }
         for (int i = 0; i < numSteps; ++i) {
             head.set(index, step);
-            moveTail();
-            // System.out.println(move);
-            // System.out.printf("HEAD: %d, %d%n", head.get(0),head.get(1));
-            // System.out.printf("Tail: %d, %d%n", tail.get(0),tail.get(1));
+            for (int j = 1; j < knots.size(); ++j) {
+                moveKnot(j);
+            }
         }
     }
 
-    private void moveTail() {
-        int hDiff = head.get(0) - tail.get(0);
+    private void moveKnot(int index) {
+        Knot pred = knots.get(index-1);
+        Knot curr = knots.get(index);
+
+        int hDiff = pred.get(0) - curr.get(0);
         int hDir = hDiff > 0 ? 1 : -1;
 
-        int vDiff = head.get(1) - tail.get(1);
+        int vDiff = pred.get(1) - curr.get(1);
         int vDir = vDiff > 0 ? 1 : -1;
 
         int hDelta = Math.abs(hDiff);
@@ -70,30 +83,30 @@ public class Rope {
         if (hDelta <= 1 && vDelta <= 1) {
             return;
         } else if (hDelta == 2) {
-            tail.set(0, hDir);
+            curr.set(0, hDir);
             if (vDelta > 0) {
-                tail.set(1, vDir);
+                curr.set(1, vDir);
             }
         } else if (vDelta == 2) {
-            tail.set(1, vDir);
+            curr.set(1, vDir);
             if (hDelta > 0) {
-                tail.set(0, hDir);
+                curr.set(0, hDir);
             }
         } else {
-            int hX = head.get(0);
-            int hY = head.get(1);
-            int tX = tail.get(0);
-            int tY = tail.get(1);
+            int hX = pred.get(0);
+            int hY = pred.get(1);
+            int tX = curr.get(0);
+            int tY = curr.get(1);
             throw new IllegalStateException("Head: " + hX + "," + hY + " Tail: " + tX + "," + tY);
         }
         updateTailHistory();
     }
 
-    public Coordinate getHead() {
+    public Knot getHead() {
         return head;
     }
 
-    public Coordinate getTail() {
+    public Knot getTail() {
         return tail;
     }
 
