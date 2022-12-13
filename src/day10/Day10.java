@@ -51,9 +51,6 @@ public class Day10 {
                 int cycle = pixelOffset + j;
                 int spriteLocation = cpu.getxAt(cycle);
                 int distance = Math.abs(spriteLocation - j);
-
-                // System.out.printf("SPRITE: %d%n", spriteLocation);
-                // System.out.printf("PIXEL: %d%n", j);
                 if (distance <= 1) {
                     System.out.print('#');
                 } else {
