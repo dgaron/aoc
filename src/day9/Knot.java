@@ -1,11 +1,11 @@
 package src.day9;
 
 // I could have just used an ArrayList with two Integers ...
-public class Coordinate {
+public class Knot {
     private int x;
     private int y;
 
-    public Coordinate(int x, int y) {
+    public Knot(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -39,7 +39,7 @@ public class Coordinate {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Coordinate other = (Coordinate) obj;
+        Knot other = (Knot) obj;
         return this.x == other.x && this.y == other.y;
     }
 
