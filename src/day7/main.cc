@@ -23,7 +23,7 @@ long sumDirectoriesUnder100k(const list<Directory *> &dirList) {
 void buildFileTree(list<Directory *> &dirList, const vector<string> &data) {
     Directory *currentDir = dirList.front();
     for (size_t i = 1; i < data.size(); ++i) {
-        vector<string> tokens = tokenize(data[i]);
+        vector<string> tokens = split(data[i]);
 
         // Ignore ls
         if (data[i].substr(0,4) == "$ ls") {

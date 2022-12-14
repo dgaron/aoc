@@ -28,7 +28,7 @@ vector<stack<char> > dealWithThisNonsense(const vector<string> &data) {
 }
 
 vector<int> parseMove(const string &s) {
-    vector<string> tokens = tokenize(s);
+    vector<string> tokens = split(s);
     // Token 1 is num, 3 is source, 5 is target
     vector<int> coords;
     coords.push_back(parseLong(tokens[1]));

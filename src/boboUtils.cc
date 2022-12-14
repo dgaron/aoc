@@ -34,7 +34,7 @@ long parseLong(const string &s) {
     return val;
 }
 
-vector<string> tokenize(const string &s, const char delim) {
+vector<string> split(const string &s, const char delim) {
     vector<string> tokens;
     string token;
     istringstream iss(s);
