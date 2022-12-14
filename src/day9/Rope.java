@@ -1,6 +1,5 @@
 package src.day9;
 
-import java.util.StringTokenizer;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
@@ -34,12 +33,13 @@ public class Rope {
     }
 
     public void moveHead(String move) throws Exception {
-        StringTokenizer st = new StringTokenizer(move);
-        if (st.countTokens() != 2) {
+        String[] moveArr = move.split(" ");
+        if (moveArr.length != 2) {
             throw new InvalidMoveException("Error: move string has more than two parts");
         }
-        String direction = st.nextToken();
-        int numSteps = Integer.parseInt(st.nextToken());
+        
+        String direction = moveArr[0];
+        int numSteps = Integer.parseInt(moveArr[1]);
         
         int step = 1;
         int index;

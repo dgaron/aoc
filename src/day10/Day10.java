@@ -1,7 +1,6 @@
 package src.day10;
 
 import java.util.List;
-import java.util.StringTokenizer;
 
 import src.FileUtil;
 
@@ -23,13 +22,12 @@ public class Day10 {
 
     public static CPU processInstructions(List<String> data) {
         CPU cpu = new CPU();
-        StringTokenizer st;
         for (String s : data) {
-            st = new StringTokenizer(s);
-            if (st.nextToken().equals("noop")) {
+            String[] opString = s.split(" ");
+            if (opString[0].equals("noop")) {
                 cpu.noop();
             } else {
-                cpu.addx(Integer.parseInt(st.nextToken()));
+                cpu.addx(Integer.parseInt(opString[1]));
             }
         }
         return cpu;
