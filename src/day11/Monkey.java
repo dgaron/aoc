@@ -90,7 +90,7 @@ public class Monkey {
         // Part 1: Divide by 3, round down
         // num = Math.floorDiv(num, 3);
         // Part 2: Mod by LCM: 9'699'690
-        // Too lazy to modify for worry reduction & LCM calculation based based on part 1 or 2
+        // Too lazy to modify for worry reduction & LCM calculation based on part 1 or 2
         num %= 9699690;
         return num;
     }
