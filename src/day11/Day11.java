@@ -12,19 +12,13 @@ public class Day11 {
             System.exit(1);
         }
         List<String> fileContents = FileUtil.readFile(args[0]);
-        
-        List<Monkey> barrel = initializeMonkeys(fileContents);
 
+        List<Monkey> barrel = initializeMonkeys(fileContents);
         // Part 1: 20 rounds
         // Part 2: 10'000 rounds
-        monkeyRound(barrel, 20);
-
-        for (Monkey m : barrel) {
-            m.printItems();
-        }
+        monkeyRound(barrel, 10000);
 
         long monkeyBusiness = getMonkeyBusiness(barrel);
-
         System.out.printf("Monkey business: %d%n", monkeyBusiness);
 
     }
@@ -60,7 +54,7 @@ public class Day11 {
         long second = 0;
         for (int i = 0; i < barrel.size(); ++i) {
             long num = barrel.get(i).getInspected();
-            System.out.printf("Monkey %d inspected items %d times%n", i, num);
+            // System.out.printf("Monkey %d inspected items %d times%n", i, num);
             if (num > most) {
                 second = most;
                 most = num;
