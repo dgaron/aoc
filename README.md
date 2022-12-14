@@ -16,3 +16,5 @@ Learned something cool on Day 9: I used a Coordinate class and kept a HashSet of
 StringTokenizer? Gross.
 
 Stuck on 11 pt 2. Not exactly sure how to reduce the worry level while keeping the flow of items the same. My first guess is something like dividing by LCM for the test divisors of the thrower and catcher. 
+
+Calculated LCM for all divisors. Saw the big number and thought, "no, that's dumb." Then I cheated and googled it. 🫥
