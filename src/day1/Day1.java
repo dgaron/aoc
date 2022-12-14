@@ -38,7 +38,7 @@ public class Day1 {
                 sums.add(currentSum);
                 currentSum = 0;
             } else {
-                currentSum += Integer.valueOf(s);
+                currentSum += Integer.parseInt(s);
             }
         }
         return sums;
