@@ -1,6 +1,6 @@
 # aoc
 
-I started in Java because I'm an idiot and it's too late to turn back now.
+I started in Java because ~I'm an idiot and it's too late to turn back now~ I am a genius and Java is the best.
 
 All of this code is cranked out as quickly as possible for those sweet leaderboard points. Don't judge me.
 
