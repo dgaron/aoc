@@ -20,7 +20,7 @@ public class Day10 {
         drawStuff(cpu);
     }
 
-    public static CPU processInstructions(List<String> data) {
+    private static CPU processInstructions(List<String> data) {
         CPU cpu = new CPU();
         for (String s : data) {
             String[] opString = s.split(" ");
@@ -33,7 +33,7 @@ public class Day10 {
         return cpu;
     }
 
-    public static int getSignalStrength(CPU cpu) {
+    private static int getSignalStrength(CPU cpu) {
         int sum = 0;
         for (int i = 20; i < 221; i += 40) {
             sum += cpu.getSignalStrength(i);
@@ -41,7 +41,7 @@ public class Day10 {
         return sum;
     }
 
-    public static void drawStuff(CPU cpu) {
+    private static void drawStuff(CPU cpu) {
         final int ROW_LENGTH = 40;
         int pixelOffset = 1;
         for (int i = 0; i < 6; ++i) {
