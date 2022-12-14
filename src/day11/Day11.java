@@ -18,7 +18,7 @@ public class Day11 {
         // Part 1: 20 rounds
         // Part 2: 10'000 rounds
         monkeyRound(barrel, 20);
-        
+
         for (Monkey m : barrel) {
             m.printItems();
         }
@@ -56,18 +56,18 @@ public class Day11 {
     }
 
     private static long getMonkeyBusiness(List<Monkey> barrel) {
-        long topDog = 0;
-        long consiglieri = 0;
+        long most = 0;
+        long second = 0;
         for (int i = 0; i < barrel.size(); ++i) {
             long num = barrel.get(i).getInspected();
             System.out.printf("Monkey %d inspected items %d times%n", i, num);
-            if (num > topDog) {
-                consiglieri = topDog;
-                topDog = num;
-            } else if (num > consiglieri) {
-                consiglieri = num;
+            if (num > most) {
+                second = most;
+                most = num;
+            } else if (num > second) {
+                second = num;
             }
         }
-        return topDog * consiglieri;
+        return most * second;
     }
 }
