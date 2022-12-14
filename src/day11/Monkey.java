@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class Monkey {
 
     private List<Monkey> barrel;
-    private List<Integer> items;
+    private List<Long> items;
 
     private String operator;
-    private int operand;
+    private long operand;
 
     private int divisor;
     private int throwTrue;
@@ -36,7 +36,7 @@ public class Monkey {
         // Starting items: 63, 57
         String[] itemArr = itemString.split(", ");
         for (String s : itemArr) {
-            items.add(Integer.parseInt(s));
+            items.add(Long.parseLong(s));
         }
     }
 
@@ -68,18 +68,18 @@ public class Monkey {
     }
 
     public void inspectItems() {
-        List<Integer> results = new ArrayList<>();
-        for (int n : items) {
+        List<Long> results = new ArrayList<>();
+        for (long n : items) {
             ++inspected;
             results.add(operate(n));
         }
-        for (int n : results) {
+        for (long n : results) {
             test(n);
         }
         items.clear();
     }
 
-    private int operate(int num) {
+    private long operate(long num) {
         if (operator.equals("+")) {
             num += operand;
         } else if (operator.equals("*")) {
@@ -88,11 +88,14 @@ public class Monkey {
             num *= num;
         }
         // Part 1: Divide by 3, round down
-        num = Math.floorDiv(num, 3);
+        // num = Math.floorDiv(num, 3);
+        // Part 2: Mod by LCM: 9'699'690
+        // Too lazy to modify for worry reduction & LCM calculation based based on part 1 or 2
+        num %= 9699690;
         return num;
     }
 
-    private void test(int num) {
+    private void test(long num) {
         if (num % divisor == 0) {
             barrel.get(throwTrue).addItem(num);
         } else {
@@ -100,12 +103,12 @@ public class Monkey {
         }
     }
 
-    public void addItem(int item) {
+    public void addItem(long item) {
         items.add(item);
     }
 
     public void printItems() {
-        for (int item : items) {
+        for (long item : items) {
             System.out.print(item + " ");
         }
         System.out.println();
