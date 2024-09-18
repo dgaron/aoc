@@ -1,5 +1,7 @@
 package src.day9;
 
+import java.util.Objects;
+
 // I could have just used an ArrayList with two Integers ...
 public class Knot {
     private int x;
@@ -46,6 +48,7 @@ public class Knot {
     // For the HashSet to work
     @Override
     public int hashCode() {
+        /** lol
         final int PRIME = 59;
         int result = 43;
         result = PRIME * result + Integer.valueOf(x).hashCode();
@@ -54,8 +57,8 @@ public class Knot {
         long temp = Double.doubleToLongBits(x);
         result = PRIME * result + ((int) (temp ^ (temp >> 32)));
         result = PRIME * result + (Integer.valueOf(y).hashCode());
-
-        return result;
+        */
+        return Objects.hash(x, y);
     }
 
 }
